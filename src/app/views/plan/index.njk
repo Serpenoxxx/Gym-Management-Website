@@ -1,0 +1,46 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+    <title>Plan | FIMS</title>
+{% endblock %}
+
+{% block content %}
+    <div class="card table-container">
+        <div class="header">
+            <a class="button" href="/plan/create">New</a>
+            <form action="/plan" method="GET">
+                <input type="text" name="filter" value="{{filter}}" placeholder="Plan Name">
+                <button type="submit">Filter</button>
+            </form>
+        </div>
+
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Plan</th>
+                    <th>Duration</th>
+                    <th>Details</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for plan in plan %}
+                    <tr>
+                        <td>{{plan.name}}</td>
+                        <td>{{plan.duration}}</td>
+                        <td>{{plan.details}}</td>
+                        <td>{{plan.price}}</td>
+                        <td>
+                            <a class="button" href="/plan/{{plan.id}}">View</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination"
+            data-page={{pagination.page}}
+            data-total={{pagination.total}}
+            data-filter={{filter}}
+        ></div>
+    </div>
+{% endblock content %}

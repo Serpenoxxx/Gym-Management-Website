@@ -1,0 +1,28 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+    <title>{{schedule.name}} | FIMS</title>
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <section class="avatar" style="background: url({{schedule.schedulepic_url}}) no-repeat center center / cover; border-radius: 4px 0 0 4px;"></section>
+        <section class="details">
+            <h3>Details</h3>
+            <div class="item">
+                <div>Schedule Name</div>
+                <div>{{schedule.name}}</div>
+            </div>
+            <div class="item">
+                <div>Date time</div>
+                <div>{{schedule.class_datetime}}</div>
+            </div>
+            <div class="item">
+                <div>Instructor</div>
+                <div>{{schedule.instructor_name}}</div>
+            </div>
+
+            <a href="/schedule/{{schedule.id}}/edit" class="button">Edit</a>
+        </section>
+    </div>
+{% endblock content %}

@@ -1,0 +1,48 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+    <title>Schedule | FIMS</title>
+{% endblock %}
+
+{% block content %}
+    <div class="card table-container">
+        <div class="header">
+            <a class="button" href="/schedule/create">New</a>
+            <form action="/schedule" method="GET">
+                <input type="text" name="filter" value="{{filter}}" placeholder="Schedule Name">
+                <button type="submit">Filter</button>
+            </form>
+        </div>
+
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Date</th>
+                    <th>Instructor</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for schedule in schedule %}
+                    <tr>
+                        <td>
+                            <span style="background-image: url({{schedule.schedulepic_url}});"></span>
+                            {{schedule.name}}
+                        </td>
+                        <td>{{schedule.class_datetime}}</td>
+                        <td>{{schedule.instructor_name}}</td>
+                        <td>
+                            <a class="button" href="/schedule/{{schedule.id}}">View</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination"
+            data-page={{pagination.page}}
+            data-total={{pagination.total}}
+            data-filter={{filter}}
+        ></div>
+    </div>
+{% endblock content %}

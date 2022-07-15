@@ -1,0 +1,30 @@
+<div class="item">
+    <div>URL Avatar</div>
+    <div>
+        <input type="url" name="avatar_url" placeholder="http://" value="{{schedule.avatar_url}}">
+    </div>
+</div>
+<div class="item">
+    <div>Schedule</div>
+    <div>
+        <input type="text" name="name" placeholder="Name of schedule" value="{{schedule.name}}">
+    </div>
+</div>
+<div class="item">
+    <div>Date</div>
+    <div>
+        <input type="date" name="class_datetime" value="{{schedule.class_datetime}}">
+    </div>
+</div>
+<div class="item">
+    <div>Instructor</div>
+    <div>
+        <select name="instructor">
+            {% for instructor in instructorsOptions %}
+                <option value="{{instructor.id}}" {% if member.instructor_id == instructor.id %} selected="selected" {% endif %}>
+                {{instructor.name}}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+</div><button type="submit">Save</button>

@@ -1,0 +1,50 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+    <title>{{member.name}} | FIMS</title>
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <section class="avatar" style="background: url({{member.avatar_url}}) no-repeat center center / cover; border-radius: 4px 0 0 4px;"></section>
+        <section class="details">
+            <h3>Details</h3>
+
+            <div class="item">
+                <div>Member</div>
+                <div>{{member.name}}</div>
+            </div>
+            <div class="item">
+                <div>Email</div>
+                <div>{{member.email}}</div>
+            </div>
+            <div class="item">
+                <div>Birthday</div>
+                <div>{{member.birth}}</div>
+            </div>
+            <div class="item">
+                <div>Sex</div>
+                <div>{{"Male" if member.gender == "M" else "Female"}}</div>
+            </div>
+            <div class="item">
+                <div>Blood Type</div>
+                <div>{{member.blood}}</div>
+            </div>
+            <div class="item">
+                <div>Height</div>
+                <div>{{member.height}} cm</div>
+            </div>
+            <div class="item">
+                <div>Weight</div>
+                <div>{{member.weight}} kg</div>
+            </div>
+            <div class="item">
+                <div>Student of</div>
+                <div>{{member.instructor_name}}</div>
+            </div>
+
+            <a href="/members/{{member.id}}/edit" class="button">Edit</a>
+        </section>
+    </div>
+
+{% endblock content %}

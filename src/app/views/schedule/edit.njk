@@ -1,0 +1,23 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+    <title>Edit Schedule | FIMS</title>
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <section class="avatar" style="background: url({{schedule.avatar_url}}) no-repeat center center / cover; border-radius: 4px 0 0 4px;"></section>
+        <section class="details">
+            <form method="POST" action="/schedule?_method=PUT">
+                <h3>Edit Schedule</h3>
+                {% include 'schedule/fields.njk' %}
+                <input type="hidden" name="id" value="{{schedule.id}}">
+            </form>
+            <form id="form-delete" method="POST" action="/schedule?_method=DELETE">
+                <input type="hidden" name="id" value="{{schedule.id}}">
+                <button type="submit">Delete</button>
+            </form>
+        </section>
+    </div>
+{% include 'delete-confirmation.njk' %}
+{% endblock content %}

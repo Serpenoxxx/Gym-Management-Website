@@ -1,0 +1,50 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+    <title>Member | FIMS</title>
+{% endblock %}
+
+{% block content %}
+    <div class="card table-container">
+        <div class="header">
+            <a class="button" href="/members/create">New</a>
+            <form action="/members" method="GET">
+                <input type="text" name="filter" value="{{filter}}" placeholder="Name or Email">
+                <button type="submit">Filter</button>
+            </form>
+        </div>
+
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Member</th>
+                    <th>Email</th>
+                    <th>Weight</th>
+                    <th>Height</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in members %}
+                    <tr>
+                        <td>
+                            <span style="background-image: url({{member.avatar_url}});"></span>
+                            {{member.name}}
+                        </td>
+                        <td>{{member.email}}</td>
+                        <td>{{member.weight}} kg</td>
+                        <td>{{member.height}} cm</td>
+                        <td>
+                            <a class="button" href="/members/{{member.id}}">View</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination"
+            data-page={{pagination.page}}
+            data-total={{pagination.total}}
+            data-filter={{filter}}
+        ></div>
+    </div>
+{% endblock content %}
